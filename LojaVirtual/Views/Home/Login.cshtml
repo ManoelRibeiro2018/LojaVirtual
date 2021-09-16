@@ -1,0 +1,43 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc
+@model LojaVirtual.Models.Cliente;
+@{
+    ViewData["Title"] = "Login";
+}
+
+<main role="main">
+    <br />
+    <br />
+    <section class="container">
+        <aside class="col-sm-4">
+            <div id="code_login_1">
+                <div class="card">
+                    <article class="card-body">
+                        <a asp-action="Cadastro" asp-controller="Home" class="float-right btn btn-outline-primary">Cadastre-se</a>
+                        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+                        <form method="post">
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" asp-for="Email"  placeholder="Email" type="email">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <a class="float-right" href="#">Esqueceu a senha?</a>
+                                <label>Senha</label>
+                                <input class="form-control" asp-for="Nome" type="password">
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label> <input type="checkbox">Lembrar senha </label>
+                                </div> <!-- checkbox .// -->
+                            </div> <!-- form-group// -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </article>
+                </div> <!-- card.// -->
+            </div> <!-- code-wrap.// -->
+        </aside>
+    </section>
+</main>
+
+
