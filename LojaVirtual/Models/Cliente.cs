@@ -28,6 +28,7 @@ namespace LojaVirtual.Models
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(11, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Telefone { get; set; }
+        public string Role { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [EmailAddress( ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E003")]

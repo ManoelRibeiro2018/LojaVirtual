@@ -20,10 +20,11 @@ namespace LojaVirtual.Repositories
             _lojaVirtualContext.SaveChanges();
         }
 
-        public void Cadastar(Cliente cliente)
+        public int Cadastar(Cliente cliente)
         {
             _lojaVirtualContext.Clientes.Add(cliente);
             _lojaVirtualContext.SaveChanges();
+            return cliente.Id;
         }
 
         public void Deletar(int id)

@@ -9,9 +9,7 @@ namespace LojaVirtual.Repositories
    public interface IClienteRepository 
     {
         Cliente Login(string Email, string Senha);
-
-        //CRUD
-        void Cadastar(Cliente cliente);
+        int Cadastar(Cliente cliente);
         void Atualizar(int id);
         void Deletar(int id);
         Cliente ObterCliente(int id);
