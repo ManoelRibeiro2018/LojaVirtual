@@ -11,21 +11,31 @@ using LojaVirtual.Database;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
+using LojaVirtual.Interface;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IClienteRepository _repositoryCliente;
+        private readonly IUserService  _userService;
         private readonly INewslertterEmails _repositoryNewslertterEmail;
-        public HomeController(IClienteRepository repositoryCliente, INewslertterEmails newslertter)
+        public HomeController(IUserService userService, INewslertterEmails newslertter)
         {
-            _repositoryCliente = repositoryCliente;
+            _userService = userService;
             _repositoryNewslertterEmail = newslertter;
         }
 
         public IActionResult Index()
         {
+            var user = new Cliente()
+            {
+                Cpf = Faker.RandomNumber.Next(11, 11).ToString(),
+                DataNascimento = DateTime.Now,
+                Email = "manoel@gmail.com",
+                Nome = "manoel",
+                Role = "adm"
+                
+            };
             return View();
         }
 
@@ -115,7 +125,7 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositoryCliente.Cadastar(cliente);
+                _userService.Insert(cliente);
                 TempData["MSG-S"] = "Cadastro do sucesso";
                 return RedirectToAction(nameof(Cadastro));
             }

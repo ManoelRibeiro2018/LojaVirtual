@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Service
 {
-    public class ClientService
+    public class ClientService: IUserService
     {
         private readonly IAuthService _authService;
         private readonly IClienteRepository _clienteRepository;
