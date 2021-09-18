@@ -12,9 +12,13 @@ using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Interface;
 using Microsoft.AspNetCore.Http;
 using LojaVirtual.Interface;
+using LojaVirtual.ViewModel;
+using LojaVirtual.InputModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaVirtual.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IUserService  _userService;
@@ -24,26 +28,32 @@ namespace LojaVirtual.Controllers
             _userService = userService;
             _repositoryNewslertterEmail = newslertter;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            var user = new Cliente()
-            {
-                Cpf = Faker.RandomNumber.Next(11, 11).ToString(),
-                DataNascimento = DateTime.Now,
-                Email = "manoel@gmail.com",
-                Nome = "manoel",
-                Role = "adm"
-                
-            };
+            //var user = new Cliente()
+            //{
+            //    Cpf = Faker.RandomNumber.Next(11, 11).ToString(),
+            //    DataNascimento = DateTime.Now,
+            //    Email = "manoel@gmail.com",
+            //    Nome = "manoel",
+            //    Role = "adm",
+            //    Sexo = "Masculino",
+            //    Telefone = Faker.RandomNumber.Next(11, 11).ToString(),
+            //    Senha = "manoel",               
+
+            //};
+            //_userService.Insert(user);
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Contato()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult EnviarEmailPromocao([FromForm] NewslertterEmail newslertterEmail)
         {
@@ -59,6 +69,7 @@ namespace LojaVirtual.Controllers
                 return View(nameof(Index));
             }
         }
+        [AllowAnonymous]
         public IActionResult ContatoAcao([FromForm] Contato contato)
         {
             try
@@ -83,26 +94,20 @@ namespace LojaVirtual.Controllers
             return View("Contato");
 
         }
+
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Login([FromForm] Cliente cliente)
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public IActionResult Login([FromForm] LoginInputModel login)
         {
-            if (!String.IsNullOrEmpty(cliente.Email))
-            {
-                HttpContext.Session.Set("Id", new byte[] {10});
-                HttpContext.Session.SetString("Cpf", "12345678912");
-                return new ContentResult {Content = "Logado!" };
-            }
-            else
-            {
-                return new ContentResult { Content = "Erro!" };
-               
-            }
+           var user = _userService.Login(login.Email, login.Password);
+            return RedirectToAction("Index");
         }
 
 
@@ -120,6 +125,7 @@ namespace LojaVirtual.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult CadastroCliente([FromForm] Cliente cliente)
         {
@@ -132,10 +138,13 @@ namespace LojaVirtual.Controllers
             return View(nameof(Cadastro));
         }
 
+        [AllowAnonymous]
         public IActionResult Cadastro()
         {
             return View();
         }
+
+        [Authorize(Roles = "adm, client")]
         public IActionResult Carrinho()
         {
             return View();

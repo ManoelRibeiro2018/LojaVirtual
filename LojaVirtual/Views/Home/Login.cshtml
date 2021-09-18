@@ -1,5 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc
-@model LojaVirtual.Models.Cliente;
+@model LojaVirtual.InputModel.LoginInputModel;
 @{
     ViewData["Title"] = "Login";
 }
@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <a class="float-right" href="#">Esqueceu a senha?</a>
                                 <label>Senha</label>
-                                <input class="form-control" asp-for="Nome" type="password">
+                                <input class="form-control" asp-for="Password" type="password">
                             </div> <!-- form-group// -->
                             <div class="form-group">
                                 <div class="checkbox">
@@ -30,7 +30,7 @@
                                 </div> <!-- checkbox .// -->
                             </div> <!-- form-group// -->
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                                <button type="submit"  class="btn btn-primary btn-block"> Login </button>
                             </div> <!-- form-group// -->
                         </form>
                     </article>

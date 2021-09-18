@@ -1,7 +1,9 @@
 using LojaVirtual.Database;
+using LojaVirtual.Interface;
 using LojaVirtual.Libraries;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Interface;
+using LojaVirtual.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,8 @@ namespace LojaVirtual
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IUserService, ClientService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<INewslertterEmails,NewslertterEmailRepository>();
 
             services.AddAuthentication(x =>
@@ -75,7 +79,6 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
