@@ -15,20 +15,22 @@ using LojaVirtual.Interface;
 using LojaVirtual.ViewModel;
 using LojaVirtual.InputModel;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
+using LojaVirtual.Service;
 
 namespace LojaVirtual.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
-        private readonly IUserService  _userService;
+        private readonly IUserService _userService;
         private readonly INewslertterEmails _repositoryNewslertterEmail;
-        public HomeController(IUserService userService, INewslertterEmails newslertter)
+        private readonly LoginService _loginService;
+        public HomeController(IUserService userService, INewslertterEmails newslertter, LoginService loginService)
         {
             _userService = userService;
             _repositoryNewslertterEmail = newslertter;
+            _loginService = loginService;
         }
-        [AllowAnonymous]
         public IActionResult Index()
         {
             //var user = new Cliente()
@@ -47,13 +49,12 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Contato()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult EnviarEmailPromocao([FromForm] NewslertterEmail newslertterEmail)
         {
@@ -69,7 +70,6 @@ namespace LojaVirtual.Controllers
                 return View(nameof(Index));
             }
         }
-        [AllowAnonymous]
         public IActionResult ContatoAcao([FromForm] Contato contato)
         {
             try
@@ -95,18 +95,23 @@ namespace LojaVirtual.Controllers
 
         }
 
-        [AllowAnonymous]
+
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [AllowAnonymous]
-        [HttpPost("Login")]
+
+        [HttpPost]
         public IActionResult Login([FromForm] LoginInputModel login)
         {
-           var user = _userService.Login(login.Email, login.Password);
+            var user = _userService.Login(login.Email, login.Password);
+            if (user != null)
+            {
+                _loginService.Login(user);
+                return RedirectToAction(nameof(Panel));
+            }
             return RedirectToAction("Index");
         }
 
@@ -114,18 +119,15 @@ namespace LojaVirtual.Controllers
         [HttpGet]
         public IActionResult Panel()
         {
-            byte[] usuarioId;
-            if (HttpContext.Session.TryGetValue("Id", out usuarioId))
+            var login = _loginService.GetSessionClient();
+            if (login != null)
             {
-                return new ContentResult { Content = "Usuario: " + usuarioId[0] + ". Logado!" };
+                return new ContentResult { Content = "Logado!" };
             }
-            else
-            {
-                return new ContentResult { Content = "Não Logado!" };
-            }
+            return new ContentResult { Content = "Não Logado!" };
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public IActionResult CadastroCliente([FromForm] Cliente cliente)
         {
@@ -138,13 +140,10 @@ namespace LojaVirtual.Controllers
             return View(nameof(Cadastro));
         }
 
-        [AllowAnonymous]
         public IActionResult Cadastro()
         {
             return View();
         }
-
-        [Authorize(Roles = "adm, client")]
         public IActionResult Carrinho()
         {
             return View();

@@ -34,11 +34,16 @@ namespace LojaVirtual
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            services.AddMemoryCache();
+            services.AddSession();
+
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IUserService, ClientService>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<INewslertterEmails,NewslertterEmailRepository>();
-
+            services.AddScoped<INewslertterEmails, NewslertterEmailRepository>();
+            services.AddScoped<ISessionCookie, SessionCookie>();
+            services.AddScoped<LoginService>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,6 +80,7 @@ namespace LojaVirtual
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
