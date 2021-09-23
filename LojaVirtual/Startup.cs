@@ -43,7 +43,7 @@ namespace LojaVirtual
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<INewslertterEmails, NewslertterEmailRepository>();
             services.AddScoped<ISessionCookie, SessionCookie>();
-            services.AddScoped<LoginService>();
+            services.AddScoped<ILoginService,LoginService>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

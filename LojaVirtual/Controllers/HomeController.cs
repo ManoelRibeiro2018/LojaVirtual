@@ -1,22 +1,13 @@
-﻿using LojaVirtual.Libraries;
+﻿using LojaVirtual.Filter;
+using LojaVirtual.InputModel;
+using LojaVirtual.Interface;
+using LojaVirtual.Libraries;
 using LojaVirtual.Models;
+using LojaVirtual.Repositories.Interface;
+using LojaVirtual.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using LojaVirtual.Database;
-using LojaVirtual.Repositories;
-using LojaVirtual.Repositories.Interface;
-using Microsoft.AspNetCore.Http;
-using LojaVirtual.Interface;
-using LojaVirtual.ViewModel;
-using LojaVirtual.InputModel;
-using Microsoft.AspNetCore.Authorization;
-using Newtonsoft.Json;
-using LojaVirtual.Service;
 
 namespace LojaVirtual.Controllers
 {
@@ -24,8 +15,8 @@ namespace LojaVirtual.Controllers
     {
         private readonly IUserService _userService;
         private readonly INewslertterEmails _repositoryNewslertterEmail;
-        private readonly LoginService _loginService;
-        public HomeController(IUserService userService, INewslertterEmails newslertter, LoginService loginService)
+        private readonly ILoginService _loginService;
+        public HomeController(IUserService userService, INewslertterEmails newslertter, ILoginService loginService)
         {
             _userService = userService;
             _repositoryNewslertterEmail = newslertter;
@@ -115,16 +106,11 @@ namespace LojaVirtual.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [ClientAuthorize]
         [HttpGet]
         public IActionResult Panel()
         {
-            var login = _loginService.GetSessionClient();
-            if (login != null)
-            {
-                return new ContentResult { Content = "Logado!" };
-            }
-            return new ContentResult { Content = "Não Logado!" };
+            return new ContentResult { Content = "Negado" };
         }
 
 

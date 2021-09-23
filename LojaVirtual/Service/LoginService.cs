@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Service
 {
-    public class LoginService
+    public class LoginService : ILoginService
     {
         private readonly ISessionCookie _sessionCookie;
 
