@@ -11,5 +11,8 @@ namespace LojaVirtual.Interface
     {
         LoginViewModel Login(string email, string password);
         int Insert(Cliente cliente);
+        void Update(int id, Cliente cliente);
+        void Delete(int id);       
+        
     }
 }

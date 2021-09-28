@@ -3,6 +3,8 @@ using LojaVirtual.Interface;
 using LojaVirtual.Libraries;
 using LojaVirtual.Repositories;
 using LojaVirtual.Repositories.Interface;
+using LojaVirtual.Repository;
+using LojaVirtual.Repository.Interface;
 using LojaVirtual.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +46,7 @@ namespace LojaVirtual
             services.AddScoped<INewslertterEmails, NewslertterEmailRepository>();
             services.AddScoped<ISessionCookie, SessionCookie>();
             services.AddScoped<ILoginService,LoginService>();
+            services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

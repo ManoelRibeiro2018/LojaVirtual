@@ -40,5 +40,15 @@ namespace LojaVirtual.Service
             cliente.Senha = passwordHash;
             return _clienteRepository.Insert(cliente).Id;
         }
+
+        public void Update(int id, Cliente cliente)
+        {
+            _clienteRepository.Update(id, cliente);
+        }
+
+        public void Delete(int id)
+        {
+            _clienteRepository.Delete(id);
+        }
     }
 }

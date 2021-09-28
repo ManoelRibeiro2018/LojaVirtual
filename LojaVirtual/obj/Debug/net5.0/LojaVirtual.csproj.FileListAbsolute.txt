@@ -151,4 +151,3 @@ C:\Users\manoel.ribeiro.neto\source\repos\LojaVirtual\LojaVirtual\obj\Debug\net5
 C:\Users\manoel.ribeiro.neto\source\repos\LojaVirtual\LojaVirtual\obj\Debug\net5.0\ref\LojaVirtual.dll
 C:\Users\manoel.ribeiro.neto\source\repos\LojaVirtual\LojaVirtual\obj\Debug\net5.0\LojaVirtual.pdb
 C:\Users\manoel.ribeiro.neto\source\repos\LojaVirtual\LojaVirtual\obj\Debug\net5.0\LojaVirtual.genruntimeconfig.cache
-C:\Users\manoel.ribeiro.neto\source\repos\LojaVirtual\LojaVirtual\obj\Debug\net5.0\LojaVirtual.csproj.AssemblyReference.cache

@@ -49,7 +49,7 @@ namespace LojaVirtual.Repository
       
         public Collaborator Login(string email, string senha)
         {
-            throw new NotImplementedException();
+            return _context.Collaborators.SingleOrDefault(c => c.Email == email && c.Password == senha);
         }
 
       
