@@ -38,7 +38,7 @@ namespace LojaVirtual.Service
         {
             var passwordHash = _authService.ComputeSha256Hash(cliente.Senha);
             cliente.Senha = passwordHash;
-            return _clienteRepository.Cadastar(cliente);
+            return _clienteRepository.Insert(cliente).Id;
         }
     }
 }

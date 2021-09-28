@@ -1,15 +1,11 @@
 ﻿using LojaVirtual.Interface;
 using LojaVirtual.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using LojaVirtual.Repository.Interface;
 
 namespace LojaVirtual.Repositories
 {
-   public interface IClienteRepository : IGenericRepository<Cliente>
+    public interface IClienteRepository : IGenericRepository<Cliente>, ILogin<Cliente>
     {
-        Cliente Login(string Email, string Senha);
 
     }
 }
