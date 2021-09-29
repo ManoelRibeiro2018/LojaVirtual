@@ -44,9 +44,7 @@ namespace LojaVirtual.Repository
         public List<Collaborator> FindAll()
         {
             return _context.Collaborators.ToList();
-        }
-
-      
+        }      
         public Collaborator Login(string email, string senha)
         {
             return _context.Collaborators.SingleOrDefault(c => c.Email == email && c.Password == senha);

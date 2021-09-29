@@ -1,4 +1,5 @@
-﻿using LojaVirtual.Interface;
+﻿using LojaVirtual.InputModel;
+using LojaVirtual.Interface;
 using LojaVirtual.Models;
 using LojaVirtual.Repository.Interface;
 using LojaVirtual.ViewModel;
@@ -28,19 +29,36 @@ namespace LojaVirtual.Service
 
         }
 
-        public int Insert(Collaborator collaborator)
+        public int Insert(CollaboratorInputModel collaborator)
         {
-            throw new NotImplementedException();
+            var model = new Collaborator
+            {
+                Email = collaborator.Email,
+                Name = collaborator.Name,
+                Password = collaborator.Password,
+                Type = collaborator.Type
+            };
+
+            return _collaboratorRepository.Insert(model).Id;
+            
         }       
 
-        public void Update(int id, Collaborator collaborator)
+        public void Update(int id, CollaboratorInputModel collaborator)
         {
-            throw new NotImplementedException();
+            var model = new Collaborator
+            {
+                Email = collaborator.Email,
+                Name = collaborator.Name,
+                Password = collaborator.Password,
+                Type = collaborator.Type
+            };
+
+            _collaboratorRepository.Update(id, model);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _collaboratorRepository.Delete(id);
         }
     }
 }
