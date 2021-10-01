@@ -29,6 +29,7 @@ namespace LojaVirtual.Controllers
         public IActionResult Cadastar([FromBody] CollaboratorInputModel model)
         {
             var collaborato =  _collaboratorService.Insert(model);
+            return View(collaborato);
         }
     }
 }

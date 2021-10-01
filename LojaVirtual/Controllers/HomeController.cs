@@ -115,7 +115,7 @@ namespace LojaVirtual.Controllers
 
 
         [HttpPost]
-        public IActionResult CadastroCliente([FromForm] Cliente cliente)
+        public IActionResult CadastroCliente([FromForm] User cliente)
         {
             if (ModelState.IsValid)
             {

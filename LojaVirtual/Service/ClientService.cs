@@ -34,14 +34,14 @@ namespace LojaVirtual.Service
             return new LoginViewModel(user.Email, token);
         }
 
-        public int Insert(Cliente cliente)
+        public int Insert(User cliente)
         {
             var passwordHash = _authService.ComputeSha256Hash(cliente.Senha);
             cliente.Senha = passwordHash;
             return _clienteRepository.Insert(cliente).Id;
         }
 
-        public void Update(int id, Cliente cliente)
+        public void Update(int id, User cliente)
         {
             _clienteRepository.Update(id, cliente);
         }

@@ -15,21 +15,21 @@ namespace LojaVirtual.Repositories
         {
             _lojaVirtualContext = lojaVirtualContext;
         }    
-        public Cliente Insert(Cliente Entity)
+        public User Insert(User Entity)
         {
             _lojaVirtualContext.Clientes.Add(Entity);
             _lojaVirtualContext.SaveChanges();
             return Entity;
         }
-        public void Update(int id, Cliente Entity)
+        public void Update(int id, User Entity)
         {
             _lojaVirtualContext.Update(id);
             _lojaVirtualContext.SaveChanges();
         }
 
-        public Cliente Login(string Email, string Senha)
+        public User Login(string Email, string Password)
         {
-           return _lojaVirtualContext.Clientes.Where(m => m.Email == Email && m.Senha == Senha).FirstOrDefault();
+           return _lojaVirtualContext.Clientes.Where(m => m.Email == Email && m.Password == Password).FirstOrDefault();
         }
 
 
@@ -40,13 +40,13 @@ namespace LojaVirtual.Repositories
             _lojaVirtualContext.SaveChanges();
         }
 
-        public Cliente Find(int id)
+        public User Find(int id)
         {
             return _lojaVirtualContext.Clientes.SingleOrDefault(c => c.Id == id);
         }
 
 
-        public List<Cliente> FindAll()
+        public List<User> FindAll()
         {
             return _lojaVirtualContext.Clientes.ToList();
         }

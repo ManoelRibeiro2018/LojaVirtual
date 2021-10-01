@@ -10,8 +10,8 @@ namespace LojaVirtual.Interface
     public interface IUserService
     {
         LoginViewModel Login(string email, string password);
-        int Insert(Cliente cliente);
-        void Update(int id, Cliente cliente);
+        int Insert(User cliente);
+        void Update(int id, User cliente);
         void Delete(int id);       
         
     }
