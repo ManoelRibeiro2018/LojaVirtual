@@ -1,4 +1,4 @@
-﻿@model Cliente;
+﻿@model User;
 @{
     ViewData["Title"] = "Cadastro";
 }
@@ -24,14 +24,14 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="col form-group">
-                                            <label asp-for="Nome">Nome Completo</label>
-                                            <input type="text" class="form-control" asp-for="Nome" placeholder="">
-                                            <span style="color:red" asp-validation-for="Nome"></span>
+                                            <label asp-for="Name">Nome Completo</label>
+                                            <input type="text" class="form-control" asp-for="Name" placeholder="">
+                                            <span style="color:red" asp-validation-for="Name"></span>
                                         </div> <!-- form-group end.// -->
                                         <div class="col form-group">
-                                            <label asp-for="DataNascimento">Data de nascimento</label>
-                                            <input type="text" class="form-control" asp-for="DataNascimento" placeholder="">
-                                            <span style="color:red" asp-validation-for="DataNascimento"></span>
+                                            <label asp-for="Birth">Data de nascimento</label>
+                                            <input type="text" class="form-control" asp-for="Birth" placeholder="">
+                                            <span style="color:red" asp-validation-for="Birth"></span>
                                         </div> <!-- form-group end.// -->
                                     </div> <!-- form-row end.// -->
                                     <div class="form-group">
@@ -45,25 +45,25 @@
                                         <span style="color:red" asp-validation-for="Cpf"></span>
                                     </div> <!-- form-group end.// -->
                                     <div class="form-group">
-                                        <label asp-for="Telefone">Telefeone</label>
-                                        <input type="tel" width="60" asp-for="Telefone" class="form-control" placeholder="">
-                                        <span style="color:red" asp-validation-for="Telefone"></span>
+                                        <label asp-for="Phone">Telefeone</label>
+                                        <input type="tel" width="60" asp-for="Phone">" class="form-control" placeholder="">
+                                        <span style="color:red" asp-validation-for="Phone"></span>
                                     </div> <!-- form-group end.// -->
                                     <div class="form-group">
                                         <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" asp-for="Sexo"  value="M">
+                                            <input class="form-check-input" type="radio" asp-for="Gender"  value="M">
                                             <span class="form-check-label"> Masculino </span>
                                         </label>
                                         <label class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" asp-for="Sexo" value="F">
+                                            <input class="form-check-input" type="radio" asp-for="Gender" value="F">
                                             <span class="form-check-label"> Feminino</span>
                                         </label>
-                                        <span style="color:red; display:block" asp-validation-for="Sexo"></span>
+                                        <span style="color:red; display:block" asp-validation-for="Gender"></span>
                                     </div> <!-- form-group end.// -->
                                     <div class="form-group">
-                                        <label asp-for="Senha">Senha</label>
-                                        <input class="form-control" asp-for="Senha" type="password">
-                                        <span style="color:red" asp-validation-for="Senha"></span>
+                                        <label asp-for="Password">Senha</label>
+                                        <input class="form-control" asp-for="Password" type="password">
+                                        <span style="color:red" asp-validation-for="Password"></span>
                                     </div> <!-- form-group end.// -->
 
                                     <div class="form-group">

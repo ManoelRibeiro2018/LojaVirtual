@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Service
 {
-    public class ClientService: IUserService
+    public class UserService: IUserService
     {
         private readonly IAuthService _authService;
         private readonly IClienteRepository _clienteRepository;
 
-        public ClientService(IAuthService authService, IClienteRepository clienteRepository)
+        public UserService(IAuthService authService, IClienteRepository clienteRepository)
         {
             _authService = authService;
             _clienteRepository = clienteRepository;
@@ -34,11 +34,11 @@ namespace LojaVirtual.Service
             return new LoginViewModel(user.Email, token);
         }
 
-        public int Insert(User cliente)
+        public int Insert(User user)
         {
-            var passwordHash = _authService.ComputeSha256Hash(cliente.Senha);
-            cliente.Senha = passwordHash;
-            return _clienteRepository.Insert(cliente).Id;
+            var passwordHash = _authService.ComputeSha256Hash(user.Password);
+            user.Password = passwordHash;
+            return _clienteRepository.Insert(user).Id;
         }
 
         public void Update(int id, User cliente)

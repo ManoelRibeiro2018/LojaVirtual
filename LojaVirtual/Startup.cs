@@ -41,7 +41,7 @@ namespace LojaVirtual
             services.AddSession();
 
             services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<IUserService, ClientService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<INewslertterEmails, NewslertterEmailRepository>();
             services.AddScoped<ISessionCookie, SessionCookie>();

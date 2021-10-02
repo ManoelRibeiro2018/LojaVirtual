@@ -13,10 +13,8 @@ namespace LojaVirtual.Controllers
         private readonly ILoginService _loginService;
         private readonly ICollaboratorService _collaboratorService;
 
-        public CollaboratorController(ILoginService loginService, ICollaboratorService collaboratorService )
+        public CollaboratorController()
         {
-            _loginService = loginService;
-            _collaboratorService = collaboratorService;
         }
         
         [HttpGet]
@@ -30,6 +28,12 @@ namespace LojaVirtual.Controllers
         {
             var collaborato =  _collaboratorService.Insert(model);
             return View(collaborato);
+        }
+
+        [HttpGet]
+        public IActionResult DashBoard()
+        {
+            return View();
         }
     }
 }
